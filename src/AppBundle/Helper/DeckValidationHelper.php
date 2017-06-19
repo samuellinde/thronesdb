@@ -58,6 +58,9 @@ class DeckValidationHelper
             if($agenda->getCard()->getCode() === '05045') {
                 $expectedPlotDeckSize = 12;
             }
+            if($agenda->getCard()->getCode() === '10045') {
+                $expectedPlotDeckSize = 10;
+            }
         }
         if($plotDeckSize > $expectedPlotDeckSize) {
             return 'too_many_plots';
@@ -67,6 +70,9 @@ class DeckValidationHelper
         }
         /* @var integer $expectedPlotDeckSpread Expected number of different plots */
         $expectedPlotDeckSpread = $expectedPlotDeckSize - 1;
+        if($agenda->getCard()->getCode() === '10045') {
+            $expectedPlotDeckSpread = $expectedPlotDeckSize - 2;
+        }
         if(count($plotDeck) < $expectedPlotDeckSpread) {
             return 'too_many_different_plots';
         }
